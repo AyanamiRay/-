@@ -1,0 +1,433 @@
+<!DOCTYPE html><html><head>
+      <title>python&#x53EF;&#x89C6;&#x5316;</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({"extensions":["tex2jax.js"],"jax":["input/TeX","output/HTML-CSS"],"messageStyle":"none","tex2jax":{"processEnvironments":false,"processEscapes":true,"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"TeX":{"extensions":["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]},"HTML-CSS":{"availableFonts":["TeX"]}});
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+        
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h2 class="mume-header" id="matplotlibpyplot">matplotlib.pyplot</h2>
+
+<h3 class="mume-header" id="figure%E7%94%BB%E5%9B%BE">Figure&#x753B;&#x56FE;</h3>
+
+<ul>
+<li>&#x8BBE;&#x7F6E;&#x6807;&#x9898;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">&apos;figure&apos;</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x8BBE;&#x7F6E;&#x56FE;&#x4F8B;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>label<span class="token operator">=</span><span class="token string">&apos;label&apos;</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x8BBE;&#x7F6E;&#x5750;&#x6807;&#x8F74;&#x6807;&#x7B7E;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">&apos;y&apos;</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x8BBE;&#x7F6E;&#x5750;&#x6807;&#x8F74;&#x8303;&#x56F4;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">plt<span class="token punctuation">.</span>xlim<span class="token punctuation">(</span>start<span class="token punctuation">,</span>end<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span>start<span class="token punctuation">,</span>end<span class="token punctuation">)</span>
+<span class="token comment"># or</span>
+plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token punctuation">[</span>x_start<span class="token punctuation">,</span>x_end<span class="token punctuation">,</span>y_start<span class="token punctuation">,</span>y_end<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x8BBE;&#x7F6E;&#x56FE;&#x50CF;&#x5927;&#x5C0F;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x8BBE;&#x7F6E;&#x7BAD;&#x5934;&#x6807;&#x6CE8;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">plt<span class="token punctuation">.</span>annotate<span class="token punctuation">(</span>s<span class="token punctuation">,</span>xy<span class="token punctuation">,</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+<span class="token comment"># s  &#x6CE8;&#x91CA;&#x5B57;&#x7B26;&#x4E32;</span>
+<span class="token comment"># xy &#x6CE8;&#x91CA;&#x76EE;&#x6807;&#x70B9;&#x7684;&#x5750;&#x6807;</span>
+<span class="token comment"># xytext &#x6CE8;&#x91CA;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5750;&#x6807;</span>
+<span class="token comment"># textcoords &#x6CE8;&#x91CA;&#x5B57;&#x7B26;&#x4E32;&#x6240;&#x5728;&#x7684;&#x5750;&#x6807;&#x7CFB;&#x7EDF;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E0E;xy&#x76F8;&#x540C;</span>
+<span class="token comment"># arrowprops &#x7BAD;&#x5934;&#x5C5E;&#x6027;&#xFF0C;&#x5B57;&#x5178;</span>
+<span class="token comment"># arrowstyle &#x7BAD;&#x5934;&#x6837;&#x5F0F;</span>
+cnh <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">13.608</span><span class="token operator">*</span><span class="token number">1.06</span><span class="token operator">**</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+us <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">20.494</span><span class="token operator">*</span><span class="token number">1.02</span><span class="token operator">**</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+x <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">31</span><span class="token punctuation">)</span> <span class="token operator">+</span><span class="token number">2018</span>
+
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>cnh<span class="token punctuation">,</span>label<span class="token operator">=</span><span class="token string">&apos;CN&apos;</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>us<span class="token punctuation">,</span>label<span class="token operator">=</span><span class="token string">&apos;US&apos;</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlim<span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token number">2040</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>annotate<span class="token punctuation">(</span><span class="token string">&apos;miracle&apos;</span><span class="token punctuation">,</span>xy<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">2035</span><span class="token punctuation">,</span><span class="token number">35</span><span class="token punctuation">]</span><span class="token punctuation">,</span>xytext<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">2035</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">]</span><span class="token punctuation">,</span>arrowprops<span class="token operator">=</span><span class="token builtin">dict</span><span class="token punctuation">(</span>arrowstyle<span class="token operator">=</span><span class="token string">&apos;-&gt;&apos;</span><span class="token punctuation">,</span>connectionstyle<span class="token operator">=</span><span class="token string">&apos;arc3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><center>
+<img src="annotate.png"><img src>
+<br>
+<div>&#x7BAD;&#x5934;&#x6807;&#x6CE8;</div>
+</center>
+- &#x6DFB;&#x52A0;&#x6587;&#x5B57;
+```python
+plt.text(x,y,s,fontdict=None,**kwargs)
+# &#x5728;x,y&#x5750;&#x6807;&#x5904;&#x6DFB;&#x52A0;&#x6587;&#x672C;&#xFF0C;s &#x4E3A;&#x6587;&#x672C;&#x5185;&#x5BB9;
+# fontsize &#x6587;&#x672C;&#x5B57;&#x4F53;&#x5927;&#x5C0F;
+# ha ha=&apos;center&apos; &#x6C34;&#x5E73;&#x5BF9;&#x9F50; left right
+# va center&#x6C34;&#x5E73;&#x5C45;&#x4E2D; top&#x9876;&#x7AEF;&#x5C45;&#x4E2D; bottom &#x5E95;&#x7AEF;&#x5C45;&#x4E2D; baseline &#x5E95;&#x7EBF;&#x5C45;&#x4E2D;
+```
+- &#x989C;&#x8272;&#xFF0C;&#x6807;&#x8BB0;&#xFF0C;&#x7EBF;&#x578B;&#x548C;&#x56FE;&#x8868;&#x98CE;&#x683C;
+```python
+plot(x,y,color=&apos;&apos;,marker=&apos;&apos;,linestyle=&apos;&apos;)
+# color&#xFF0C;marker&#xFF0C;linestyle&#x53EF;&#x4EE5;&#x4EFB;&#x610F;&#x6392;&#x5217;
+# &#x7EFF;&#x8272;&#x865A;&#x7EBF;
+plt.plot(x,y,&apos;g--&apos;) 
+# &#x7EFF;&#x8272;&#x5706;&#x5708;&#x6807;&#x8BB0;&#x865A;&#x7EBF;
+plt.plot(x,y,&apos;go--&apos;)
+```
+<center>
+<img src="color.png"><img src>
+<br>
+<div>&#x652F;&#x6301;&#x989C;&#x8272;</div>
+</center>
+<p><a href="https://matplotlib.org/3.1.1/api/markers_api.html">&#x652F;&#x6301;&#x7684;marker&#x6837;&#x5F0F;</a></p>
+<ul>
+<li>Style &#x56FE;&#x7247;&#x98CE;&#x683C;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#&#x8C03;&#x7528;&#x65B9;&#x5F0F;</span>
+plt<span class="token punctuation">.</span>style<span class="token punctuation">.</span>use<span class="token punctuation">(</span><span class="token string">&apos;ggplot&apos;</span><span class="token punctuation">)</span>
+<span class="token comment">#&#x67E5;&#x770B;&#x6240;&#x6709;style</span>
+plt<span class="token punctuation">.</span>style<span class="token punctuation">.</span>available
+</pre><p><a href="%5Bplt.style.available%5D(https://tonysyu.github.io/raw_content/matplotlib-style-gallery/gallery.html)">&#x5404;&#x4E2A;&#x98CE;&#x683C;&#x5BF9;&#x5E94;&#x6548;&#x679C;</a></p>
+<h3 class="mume-header" id="subplot%E5%AD%90%E5%9B%BE">Subplot&#x5B50;&#x56FE;</h3>
+
+<ul>
+<li>plt.subplots&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x5B50;&#x56FE;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">subplots<span class="token punctuation">(</span>nrows<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>ncols<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>sharex<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>sharey<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>squeeze<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>subplot_kw<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>gridspec_kw<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span><span class="token operator">**</span>fig_kw<span class="token punctuation">)</span>
+<span class="token comment">#&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;figure&#x5BF9;&#x8C61;&#x548C;&#x4E00;&#x4E2A;axes&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x7EC4;</span>
+<span class="token comment">#nrows  subplot&#x884C;&#x6570;</span>
+<span class="token comment">#ncols  subplot&#x5217;&#x6570;</span>
+<span class="token comment">#sharex &#x6240;&#x6709;subplot&#x4F7F;&#x7528;&#x76F8;&#x540C;x&#x8F74;&#x523B;&#x5EA6;&#xFF0C;&#x8C03;&#x8282;xlim&#x4F1A;&#x5F71;&#x54CD;&#x6240;&#x6709;subplot</span>
+<span class="token comment">#sharey &#x540C;&#x4E0A;</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#Axes</span>
+fig&#xFF0C; axes <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+axes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>plot<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cumsum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">&apos;k--&apos;</span><span class="token punctuation">)</span>
+axes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>hist<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>bins<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span>color<span class="token operator">=</span><span class="token string">&apos;k&apos;</span><span class="token punctuation">,</span>alpha<span class="token operator">=</span><span class="token number">0.3</span><span class="token punctuation">)</span>
+axes<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token operator">+</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>plt.suptitle()/fig.suptitle()&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x4E3A;figure&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5C45;&#x4E2D;&#x7684;&#x6807;&#x9898;</p>
+<ul>
+<li>plt.subplot&#x521B;&#x5EFA;&#x5B50;&#x56FE;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">subplot<span class="token punctuation">(</span>nrows<span class="token punctuation">,</span>ncols<span class="token punctuation">,</span>index<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python">plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">221</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cumsum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">&apos;k--&apos;</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">222</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>hist<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>bins<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span>color<span class="token operator">=</span><span class="token string">&apos;k&apos;</span><span class="token punctuation">,</span>alpha<span class="token operator">=</span><span class="token number">0.3</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">223</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token operator">+</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x8C03;&#x6574;subplot&#x5468;&#x56F4;&#x95F4;&#x8DDD;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#&#x5BF9;&#x4E8E;plt.subplots&#x7684;figure&#x5BF9;&#x8C61;</span>
+fig<span class="token punctuation">.</span>subplots_adjust<span class="token punctuation">(</span>wspace<span class="token operator">=</span><span class="token number">0.4</span><span class="token punctuation">,</span>hspace<span class="token operator">=</span><span class="token number">0.4</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x8BBE;&#x7F6E;&#x5B50;&#x56FE;&#x7684;&#x6807;&#x9898;&#x3001;&#x8F74;&#x6807;&#x7B7E;&#x3001;&#x523B;&#x5EA6;&#x3001;&#x523B;&#x5EA6;&#x6807;&#x7B7E;&#x53CA;&#x6DFB;&#x52A0;&#x56FE;&#x4F8B;</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">AxesSubplot<span class="token punctuation">.</span>set_title<span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token comment">#&#x8BBE;&#x7F6E;&#x6807;&#x9898;</span>
+
+AxesSubplot<span class="token punctuation">.</span>set_xlabel<span class="token punctuation">(</span><span class="token punctuation">)</span>          <span class="token comment">#&#x8BBE;&#x7F6E;&#x8F74;&#x6807;&#x7B7E;</span>
+AxesSubplot<span class="token punctuation">.</span>set_ylabel<span class="token punctuation">(</span><span class="token punctuation">)</span>         
+
+AxesSubplot<span class="token punctuation">.</span>set_xticks<span class="token punctuation">(</span><span class="token punctuation">)</span>          <span class="token comment">#&#x8BBE;&#x7F6E;&#x523B;&#x5EA6; &#xFF08;&#x6A2A;&#x5750;&#x6807;&#x7B49;&#x4E8E;&#x54EA;&#x4E9B;&#x503C;&#x7684;&#x65F6;&#x5019;&#x663E;&#x793A;&#x523B;&#x5EA6;&#xFF09;</span>
+AxesSubplot<span class="token punctuation">.</span>set_yticks<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+AxesSubplot<span class="token punctuation">.</span>set_xticklabels<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment">#&#x8BBE;&#x7F6E;&#x523B;&#x5EA6;&#x6807;&#x7B7E; &#xFF08;&#x523B;&#x5EA6;&#x4E4B;&#x4E0B;&#x663E;&#x793A;&#x4EC0;&#x4E48;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x5176;&#x4EE3;&#x8868;&#x7684;&#x503C;&#xFF09;</span>
+AxesSubplot<span class="token punctuation">.</span>set_yticklabels<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="matplotlib%E6%94%AF%E6%8C%81%E7%9A%84%E5%9B%BE">matplotlib&#x652F;&#x6301;&#x7684;&#x56FE;</h3>
+
+<p><a href="https://matplotlib.org/tutorials/introductory/sample_plots.html">&#x652F;&#x6301;&#x7ED8;&#x5236;&#x56FE;&#x7684;&#x5177;&#x4F53;&#x65B9;&#x6CD5;</a></p>
+<ul>
+<li>hist() &#x76F4;&#x65B9;&#x56FE;</li>
+<li>streamplot() &#x6D41;&#x56FE;</li>
+<li>&#x4E09;&#x7EF4;&#x7ED8;&#x56FE;</li>
+<li>&#x8DEF;&#x5F84;(matplotlib.path)</li>
+<li>bar()</li>
+<li>pie() &#x997C;&#x56FE;</li>
+<li>table()</li>
+<li>scatter()</li>
+<li>fill()</li>
+<li>&#x5BF9;&#x6570;&#x56FE;(semilogx(),semilogy(),loglog())</li>
+<li>polar() &#x6781;&#x5750;&#x6807;&#x56FE;</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
